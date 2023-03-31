@@ -1,9 +1,9 @@
-#define ai_cruise_pin_1 7	// 10 пин  колодке// 5k // cancel, resume, speed+, speed -
-#define ai_cruise_pin_2 3	// 22 пин  колодке// 25k // set
-#define ai_cruise_pin_4 6	// 23 пин  колодке// 5k // on off
+#define ai_cruise_pin_1 7	// pin-10 socket//  5k // cancel, resume, speed+, speed -
+#define ai_cruise_pin_2 3	// pin-22 socket// 25k // set
+#define ai_cruise_pin_4 6	// pin-23 socket//  5k // on off
 #define ai_5v_refrense 0 
 
-#define di_lamp 3 //лампы
+#define di_lamp 3 //head light
 #define drl_lamp 9 
 #define di_stop 4
 #define di_speed 2
@@ -16,16 +16,16 @@
 #define drive_sleep 5
 
 #define do_servo 10
-#define dio_temp_meas 7 //датчик температуры
-#define ai_temp_R 1		// задатчик температуры
+#define dio_temp_meas 7 //temperature sensor
+#define ai_temp_R 1		//temperature controller
 
 //!!!!!!!!!!!!!!!!!!!!! DRL !!!!!!!!!!!!!!!!!!!!!!!!!
 
-#define drl_power 408 //мощность дрл 1024*% 102 244 hz 10bit
-#define drl_first_start_zone 5 //после какого расстояния дрл вклчится
+#define drl_power 408 //drl output power: 1024*% 102 244 hz 10bit
+#define drl_first_start_zone 5 //drl turn on time delay
 
-//!!!!!!!!!!!!  настройка кнопок   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#define button_refrense 496 //делитель для отслеживания напряжения на линии 5в
+//!!!!!!!!!!!!  button settings   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#define button_refrense 496 //divider for monitoring the voltage on the 5v line
 
 #define button_off 0
 #define button_drl 1
@@ -36,31 +36,31 @@
 #define button_speed_up 6
 #define button_speed_down 7
 
-#define button_on_up 20			//верхний порог on
-#define button_off_down 160		//нижний порог off
+#define button_on_up 20			//on - upper threshold
+#define button_off_down 160		//off - down threshold
 #define button_set_down 100
 
 //cancel 70 up+20 down-20
-#define button_cancel_up 90		//верхний порог on
-#define button_cancel_down 40		//нижний порог off
+#define button_cancel_up 90		//on - upper threshold
+#define button_cancel_down 40   //off - down threshold
 
 //resume 200 up+20 down-20
-#define button_resume_up 160		//верхний порог on
-#define button_resume_down 110		//нижний порог off
+#define button_resume_up 160		//on - upper threshold
+#define button_resume_down 110		//off - down threshold
 
 //speedUP 570 - 580 up+20 down-20
-#define button_SpeedUP_up 600		//верхний порог on
-#define button_SpeedUP_down 540		//нижний порог off
+#define button_SpeedUP_up 600		//on - upper threshold
+#define button_SpeedUP_down 540		//off - down threshold
 
 //SpeedDOWN 940 up+20 down-20
-#define button_SpeedDOWN_up 840		//верхний порог on
-#define button_SpeedDOWN_down 790		//нижний порог off
+#define button_SpeedDOWN_up 840		//on - upper threshold
+#define button_SpeedDOWN_down 790	//off - down threshold
 
 #define button_delay_const 150
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!  настройка климата !!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!  climat control !!!!!!!!!!!!!!!!
 
-// положение потенциометра 16-29 градусов
+// potentiometer position 16-29 degrees
 //#define T_R_min 800
 #define T_R_16 775 
 #define T_R_17 715
@@ -79,20 +79,19 @@
 #define T_R_30 65 
 #define T_R_max 20 
 
-//коэффициент усиления
+//gain
 #define T_Ktemp 1 
 
-// границ сервопривода
-#define T_sigma_max 150		//max угол servo
-#define T_sigma_min 100		//min угол servo
+#define T_sigma_max 150		//max servo angle
+#define T_sigma_min 100		//min servo angle
 
-#define T_dead_time_meas 1000		//время измерений мс
-#define T_dead_time_regulate 15000	//время между регулироками мс
-#define T_dead_temp 5				//зона нечувствиелности потемпературе град х10 
-#define T_zone_1 25					//зона регулировки уставка 1
-#define T_zone_2 50					//зона регулировки уставка 2
+#define T_dead_time_meas 1000		//measurement time ms
+#define T_dead_time_regulate 15000	//time between adjustments ms
+#define T_dead_temp 5				//temperature dead zone deg x10
+#define T_zone_1 25					//adjustment zone setpoint 1
+#define T_zone_2 50					//adjustment zone setpoint 2
 
-#define T_target_min 100 //уставка температуры для min
+#define T_target_min 100 //temperature setpoint for min
 #define T_target_16 160
 #define T_target_17 170
 #define T_target_18 180
@@ -108,9 +107,9 @@
 #define T_target_28 280
 #define T_target_29 290
 #define T_target_30 300
-#define T_target_max 400 //уставка температуры для max
+#define T_target_max 400 //temperature setpoint for max
 
-//для ручного климата
+//for manual climate
 #define T_sigma_16 147
 #define T_sigma_17 143
 #define T_sigma_18 140
@@ -130,28 +129,24 @@
 
 //!!!!!!!!!!!!!!!!!!!!! CRUISE  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-#define wait_step 1750 //скорость 1 шага
+#define wait_step 1750 //1 step speed
 
-#define C_dead_band_spd 50			// мертвая полоса speed х10
-#define C_dead_band_acc 25			// мертвая полоса ускорения км/(ч*с) х100
-#define C_dead_time_regulate 4000	//время между регулироками мс
-#define C_time_speed_meas 1000		//время измерения скорости
+#define C_dead_band_spd 50			// speed dead band - x10
+#define C_dead_band_acc 25			// acceleration dead band - km/(h*s) x100
+#define C_dead_time_regulate 4000	// time between adjustments ms
+#define C_time_speed_meas 1000		// time between adjustments ms
 
-#define C_translate_speed 75000 // коэф трансформации скорость х100 потом делим на 10 но это наркомания поышения точности
+#define C_translate_speed 75000     // speed multiplier
 
-#define C_button_delta_spd 20 // изменение целеывой скорости от кнопки
-//need?
-//#define drive_step_pack 7 // сколько шагов надо сделать от кнопки 
+#define C_button_delta_spd 20       // changing the measurement speed from the button
 
-//плюсоать надо +60 оборотов - зто +2 км/ч
-
-#define C_acc_max 200	//диапазон ускорений о 2,4 кадранте 
+#define C_acc_max 200	// acceleration range about 2.4 quadrant
 #define C_acc_min 100 
 
-#define drive_step_start 35 //изначальное число шагов для натягивания тросика
-#define drive_step_max 150 //ограничение в 60% 
-#define drive_step_min 10 //ограничение в 60% 
-//коэффициенты ув
+#define drive_step_start 35 //the initial number of steps to pull the cable
+#define drive_step_max 150  //60% limit
+#define drive_step_min 10   //60% limit
+
 #define C_k1_1 6
 #define C_k1_2 6
 
@@ -170,69 +165,68 @@
 #include <OneWire.h>
 
 #include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C lcd(0x3F, 16, 2);  // у мего дисплея адрес 0x3F для модели 0x27
+LiquidCrystal_I2C lcd(0x3F, 16, 2);  // my display address is 0x3F for model 0x27
 
-OneWire ds(dio_temp_meas); // Создаем объект OneWire для шины 1-Wire, с помощью которого будет осуществляться работа с датчиком
+OneWire ds(dio_temp_meas);      // Create a OneWire object for the 1-Wire bus, which will be used to work with the sensor
 
-byte bt_prev[3]; // состояние кнопок
+byte bt_prev[3];    // button state
 
-unsigned long bt_timer;		// таймер кнопок
-unsigned long switch_timer; // переклчения on-off
-unsigned long bt_tmp;		// таймер кнопок
-unsigned long C_regulate_timer;		//таймер УВ скуиза
-unsigned long C_speed_time_meas;	//время измерения скорости
-boolean C_speed_meas;		// состояние измерения скорости
-unsigned long C_d_time_long_speed;		//непосредствнное время измерений скорости
-unsigned long C_d_time_long_acc;		//непосредствнное время измерений ускорения
-unsigned long C_d_time_long_acc_prev;		//непосредствнное время измерений ускорения
-long C_V_current_long;		//лонгоая текущая скорость
-int C_d_time;		//время измерений
-int C_V_current;	//текущая скорость
-int C_V_prev;		//предыдущая скорость
-int C_V_target;		//целеавя скорость
-int C_dV;			//изменение скорости
-int C_acc;			//ускорение
-long C_acc_long;			//ускорение long
-boolean C_acc_dir;	//направление ускорения
-boolean C_dV_dir;	//положение изменения скорости
-boolean C_rot_direction; //направление ращения
-long C_dX_acc;		//
-long step_regulate;	//управлящие шаги
-//boolean  C_fresh_speed_meas;		//необходимость измерения скорости
-boolean Cruise_first_start;			//перое вклчение круиза
+unsigned long bt_timer;		            // button timer
+unsigned long switch_timer;             // on-off switching
+unsigned long bt_tmp;		            // button temporary
+unsigned long C_regulate_timer;		    // cruise timer
+unsigned long C_speed_time_meas;	    // speed measurement time
+boolean C_speed_meas;		            // speed measurement state
+unsigned long C_d_time_long_speed;		// immediate time of speed measurements
+unsigned long C_d_time_long_acc;		// immediate time of acceleration measurements
+unsigned long C_d_time_long_acc_prev;	// immediate time of acceleration measurements
+long C_V_current_long;		// long current speed
+int C_d_time;		// measurement time
+int C_V_current;	// current speed
+int C_V_prev;		// previous speed
+int C_V_target;		// target speed
+int C_dV;			// speed change
+int C_acc;			// acceleration
+long C_acc_long;	// acceleration long
+boolean C_acc_dir;	// acceleration direction
+boolean C_dV_dir;	// speed change position
+boolean C_rot_direction; // direction of rotation
+long C_dX_acc;
+long step_regulate;	        // control steps
+boolean Cruise_first_start;	// first start of the cruise
 
-int bt_read; // кнопки переключателя
-int bt_refrense; // стабилизатор кнопок
-int ai_read; //чтение ai
-int i; // обычная i для циклов
-boolean switch_on_off; //состояние переклчателя false - off true-on
+int bt_read;        // switch buttons
+int bt_refrense;    // button stabilizer
+int ai_read;        // read ai
+int i;              // regular i for loops
+boolean switch_on_off; //switch state false - off true-on
 
-boolean cruise; //состояние круиза
-boolean C_first_start; //первый запуск круиза: пусть подтягиает текущу скорость
-int current_step; //счетчик текущих шагов
-unsigned long speed_count; //счетчик импульсов скорости
+boolean cruise;         //cruise state
+boolean C_first_start;  //first start of the cruise: let it pull up the current speed
+int current_step;       // counter of current steps
+unsigned long speed_count; // speed pulse counter
 
 //drl
 boolean drl_state;
-boolean drl_first_start; //первый запуск дрл
-boolean drl_lights_on; //состояние ламп drl
+boolean drl_first_start;    // first run drl
+boolean drl_lights_on;      // status of drl lamps
 
 //climate
-boolean T_data_sent;		//отправка данных setup= false;
-unsigned long T_data_get;	//переменная времени отправки данных
-unsigned long T_time_regulate;	//переменная времени регулироки серво привода
-byte T_transfer[2];		// Место для значения температуры
-int T_current;			//измеренная температура
-int T_target;			//целевая температура
-int T_target_previous;	//целевая температура предыдущая
-int T_dT;				//отклонение температуры
-int T_sigma;			//угол поорота серво привода
-int T_target_read;		//измерение температуры
+boolean T_data_sent;		// sending data setup= false;
+unsigned long T_data_get;	// data sending time variable
+unsigned long T_time_regulate;	// time variable for servo control
+byte T_transfer[2];		// Place for temperature value
+int T_current;			// measured temperature
+int T_target;			// target temperature
+int T_target_previous;	// target temperature previous
+int T_dT;				// temperature deviation
+int T_sigma;			// angle of rotation of the servo drive
+int T_target_read;		// temperature measurement
 
-//только дисплей
+//display only
 const char MenuName_0[] PROGMEM = "    /           ";
 const char* const MenuNames[] PROGMEM = { MenuName_0};
-char menubuffer[17]; // буфер для избежания фрагментации памяти
+char menubuffer[17]; 	// buffer to avoid memory fragmentation
 
 int servo_data;
 
@@ -243,7 +237,7 @@ void Draw () {
 	lcd.setCursor(9, 1);
 	strcpy_P(menubuffer, (char*)pgm_read_word(&(MenuNames[0])));
 	lcd.print(menubuffer);
-	//текущая скорость
+	//current speed
 	lcd.setCursor(0, 0);
 	lcd.print(C_V_current);
 	lcd.setCursor(5, 0);
@@ -256,26 +250,9 @@ void Draw () {
 	lcd.print(T_target);
 }
 
-
-//определение нажатой кнопки
-byte getPressedButton() { //процедура определения нажатой кнопки
-						  /*
-						  ai_cruise_pin_1
-						  resume 202
-						  on 500
-						  cancel 68
-						  off 493
-						  speed+  804
-						  speed-  938
-						  ai_cruise_pin_2		set
-						  off 0
-						  on 493
-						  ai_cruise_pin_4		on/off
-						  off 493
-						  on 0
-						  */
+//press button detecting
+byte getPressedButton() { 
 	bt_refrense = (analogRead(ai_5v_refrense) - button_refrense);
-	//Serial.println(bt_refrense);
 	if (abs(bt_refrense) < 5)
 	{
 		bt_read = analogRead(ai_cruise_pin_4);
@@ -310,7 +287,6 @@ byte getPressedButton() { //процедура определения нажатой кнопки
 					if (bt_tmp >= button_delay_const)
 					{
 						bt_prev[0] = 0;
-						////Serial.println("set");
 						return buttton_set;
 					}
 					else { return button_on; }
@@ -324,7 +300,6 @@ byte getPressedButton() { //процедура определения нажатой кнопки
 				if (bt_tmp >= button_delay_const)
 				{
 					bt_timer = millis();
-					//Serial.println("cancel");
 					return button_cancel;
 				}
 				else
@@ -339,7 +314,6 @@ byte getPressedButton() { //процедура определения нажатой кнопки
 				if (bt_tmp >= button_delay_const)
 				{
 					bt_timer = millis();
-					//Serial.println("resume");
 					return button_resume;
 				}
 				else
@@ -354,7 +328,6 @@ byte getPressedButton() { //процедура определения нажатой кнопки
 				if (bt_tmp >= button_delay_const)
 				{
 					bt_timer = millis();
-					//Serial.println("Spd++");
 					return button_speed_up;
 				}
 				else
@@ -369,7 +342,6 @@ byte getPressedButton() { //процедура определения нажатой кнопки
 				if (bt_tmp >= button_delay_const)
 				{
 					bt_timer = millis();
-					//Serial.println("Spd--");
 					return button_speed_down;
 				}
 				else
@@ -402,15 +374,13 @@ byte getPressedButton() { //процедура определения нажатой кнопки
 			}
 			switch_on_off = false;
 			switch_timer = millis();
-			////Serial.println("off");
-			// упрвление drl= off+ 5 сек. set
+			// managing drl= off+ 5 sec. set
 			if (analogRead(ai_cruise_pin_2) > button_set_down)
 			{
 				if (bt_prev[0] != 1)
 				{
 					bt_timer = millis();
 					bt_prev[0] = 1;
-					////Serial.println("off");
 					return button_off;
 				}
 				else
@@ -422,25 +392,23 @@ byte getPressedButton() { //процедура определения нажатой кнопки
 						return button_drl;
 					}
 					else {
-						////Serial.println("off"); 
 						return button_off;
 					}
 				}
 			}
 			else
 			{
-				////Serial.println("off");
 				return button_off;
 			}
 		}
 	}
 }
 
-//процедура деланья шагов
+//step procedure
 void stepeers(boolean dir_drive, byte current_steps)
 {
-	digitalWrite(drive_dir, dir_drive ? LOW : HIGH); //уточнить направление
-	//ну и делаем нужное число шагов
+	digitalWrite(drive_dir, dir_drive ? LOW : HIGH); //specify direction
+	//make the required number of steps
 	for (i = 0; i < current_steps; i++)
 	{
 		digitalWrite(drive_step, HIGH);
@@ -450,16 +418,16 @@ void stepeers(boolean dir_drive, byte current_steps)
 	}
 	if (dir_drive) { current_step += current_steps; }
 	else { current_step -= current_steps; }
-	//ожидание следущего ув
+	//waiting for next setpoint
 	C_regulate_timer = millis() + C_dead_time_regulate;
 }
 
-//отклчение DRL по кнопке
+//disable DRL by button
 void switch_drl() {
 	drl_state = !drl_state;
 	if (drl_state)
 	{
-		if (digitalRead(di_lamp))  //уточнить положение
+		if (digitalRead(di_lamp))  //clarify the position
 		{
 			analogWrite(drl_lamp, drl_power);
 			drl_lights_on = true;
@@ -477,11 +445,11 @@ void switch_drl() {
 	}
 }
 
-//Interrupt обработка переклчения drl
+//Interrupt drl switch handling
 void drl() {
 	if (drl_state)
 	{
-		if (digitalRead(di_lamp))  //уточнить положение
+		if (digitalRead(di_lamp))  //clarify the position
 		{
 			analogWrite(drl_lamp, drl_power);
 			drl_lights_on = true;
@@ -494,7 +462,7 @@ void drl() {
 	}
 }
 
-//Interrupt обработка переклчения stop
+//Interrupt stop switch processing
 void cruise_break() {
 	if (digitalRead(drive_sleep))
 	{
@@ -504,14 +472,13 @@ void cruise_break() {
 	{
 		digitalWrite(drive_enable, HIGH);
 	}
-	//обнуляем переменну на всякий случай
 	if (cruise)
 	{
 		cruise = false;
 	}
 }
 
-//Interrupt обработка скорости и педали стоп
+//Interrupt speed and stop pedal processing
 void Speed_interrupt() {
 	speed_count++;
 	if (cruise)
@@ -523,26 +490,25 @@ void Speed_interrupt() {
 	}
 }
 
-//измерение темпертуры
+//temperature measurement
 void temperature_meas_regulate() {
 	if (!T_data_sent)
 	{
-		ds.reset(); // Начинаем взаимодействие со сброса всех предыдущих команд и параметров
-		ds.write(0xCC); // Даем датчику DS18b20 команду пропустить поиск по адресу. В нашем случае только одно устрйоство
-		ds.write(0x44); // Даем датчику DS18b20 команду измерить температуру. Само значение температуры мы еще не получаем - датчик его положит во внутреннюю память
+		ds.reset();		// We start interaction by resetting all previous commands and parameters
+		ds.write(0xCC); // We give the DS18b20 sensor a command to skip the search for the address. In our case, only one device
+		ds.write(0x44); // We give the DS18b20 sensor a command to measure the temperature. We still do not receive the temperature value itself - the sensor will put it in the internal memory
 		T_data_get = millis() + T_dead_time_meas;
 		T_data_sent = true;
 	}
 	if (T_data_sent && (millis()>T_data_get))
 	{
-		T_transfer[0] = ds.read(); // Читаем младший байт значения температуры
-		T_transfer[1] = ds.read(); // А теперь старший
-		// Формируем итоговое значение:
-		//    - сперва "склеиваем" значение,
-		//    - затем умножаем его на коэффициент, соответсвующий разрешающей способности (для 12 бит по умолчанию - это 0,0625)
-		// температура умножена на 10(!)
+		T_transfer[0] = ds.read(); // Read low byte of temperature value
+		T_transfer[1] = ds.read(); // And now the senior
+		/*Form the final value:
+			- first "glue" the value,
+			- then multiply it by a factor corresponding to the resolution (for 12 bits, the default is 0.0625)
+			- temperature multiplied by 10(!)*/
 		T_current = ((T_transfer[1] << 8) | T_transfer[0]);
-		//Serial.println(T_current);
 		T_dT = T_current - T_target;
 		if (abs(T_dT) > T_dead_temp)
 		{
@@ -579,50 +545,32 @@ void temperature_meas_regulate() {
 	}
 }
 
-//определяем положение ручки потенциометра
+//determine the position of the potentiometer knob
 int get_temperature_target() {
-	//bt_refrense = (analogRead(ai_5v_refrense) - button_refrense) * 100 / button_refrense;
-	T_target_read = analogRead(ai_temp_R);// *bt_refrense / 100;
-	if (T_target_read <= T_R_max)
-		{  	 return T_target_max; }
-	else if (T_target_read <= T_R_30)
-		{		  return T_target_30; }
-	else if (T_target_read <= T_R_29)
-		{		  return T_target_29; }
-	else if (T_target_read <= T_R_28)
-		{		  return T_target_28; }
-	else if (T_target_read <= T_R_27)
-		{		  return T_target_27; }
-	else if (T_target_read <= T_R_26)
-		{		  return T_target_26; }
-	else if (T_target_read <= T_R_25)
-		{		  return T_target_25; }
-	else if (T_target_read <= T_R_24)
-		{		  return T_target_24; }
-	else if (T_target_read <= T_R_23)
-		{		  return T_target_23; }
-	else if (T_target_read <= T_R_22)
-		{		  return T_target_22; }
-	else if (T_target_read <= T_R_21)
-		{		  return T_target_21; }
-	else if (T_target_read <= T_R_20)
-		{		  return T_target_20; }
-	else if (T_target_read <= T_R_19)
-		{		  return T_target_19; }
-	else if (T_target_read <= T_R_18)
-		{		  return T_target_18; }
-	else if (T_target_read <= T_R_17)
-		{		  return T_target_17; }
-	else if (T_target_read <= T_R_16)
-		{		  return T_target_16; }
-	if (T_target_read > T_R_16)
-		{  	 return T_target_min; }
+	T_target_read = analogRead(ai_temp_R);	// *bt_refrense / 100;
+	if (T_target_read <= T_R_max){ return T_target_max; }
+	else if (T_target_read <= T_R_30){ return T_target_30; }
+	else if (T_target_read <= T_R_29){ return T_target_29; }
+	else if (T_target_read <= T_R_28){ return T_target_28; }
+	else if (T_target_read <= T_R_27){ return T_target_27; }
+	else if (T_target_read <= T_R_26){ return T_target_26; }
+	else if (T_target_read <= T_R_25){ return T_target_25; }
+	else if (T_target_read <= T_R_24){ return T_target_24; }
+	else if (T_target_read <= T_R_23){ return T_target_23; }
+	else if (T_target_read <= T_R_22){ return T_target_22; }
+	else if (T_target_read <= T_R_21){ return T_target_21; }
+	else if (T_target_read <= T_R_20){ return T_target_20; }
+	else if (T_target_read <= T_R_19){ return T_target_19; }
+	else if (T_target_read <= T_R_18){ return T_target_18; }
+	else if (T_target_read <= T_R_17){ return T_target_17; }
+	else if (T_target_read <= T_R_16){ return T_target_16; }
+	if (T_target_read > T_R_16){ return T_target_min; }
 }
-// тело климат контроля
+
+// body climate control
 void climate_control() {
 	T_target_previous = T_target;
 	T_target = get_temperature_target();
-	//Serial.println(T_target);
 	if (T_target == T_target_max || T_target == T_target_min)
 	{
 		if (T_sigma != T_sigma_max || T_sigma != T_sigma_min)
@@ -664,75 +612,23 @@ void climate_control_manual() {
 	T_target = get_temperature_target();
 	if (T_target != T_target_previous)
 	{
-		if (T_target == T_target_min)
-			{
-				T_sigma = T_sigma_min;
-			}
-		if (T_target == T_target_max)
-		{
-			T_sigma = T_sigma_max;
-		}
-		if (T_target == T_target_16)
-		{
-			T_sigma = T_sigma_16;
-		}
-		if (T_target == T_target_17)
-		{
-			T_sigma = T_sigma_17;
-		}
-		if (T_target == T_target_18)
-		{
-			T_sigma = T_sigma_18;
-		}
-		if (T_target == T_target_19)
-		{
-			T_sigma = T_sigma_19;
-		}
-		if (T_target == T_target_20)
-		{
-			T_sigma = T_sigma_20;
-		}
-		if (T_target == T_target_21)
-		{
-			T_sigma = T_sigma_21;
-		}
-		if (T_target == T_target_22)
-		{
-			T_sigma = T_sigma_22;
-		}
-		if (T_target == T_target_23)
-		{
-			T_sigma = T_sigma_23;
-		}
-		if (T_target == T_target_24)
-		{
-			T_sigma = T_sigma_24;
-		}
-		if (T_target == T_target_25)
-		{
-			T_sigma = T_sigma_25;
-		}
-		if (T_target == T_target_26)
-		{
-			T_sigma = T_sigma_26;
-		}
-		if (T_target == T_target_27)
-		{
-			T_sigma = T_sigma_27;
-		}
-		if (T_target == T_target_28)
-		{
-			T_sigma = T_sigma_28;
-		}
-		if (T_target == T_target_29)
-		{
-			T_sigma = T_sigma_29;
-		}
-		if (T_target == T_target_30)
-		{
-			T_sigma = T_sigma_30;
-		}
-		//analogWrite(do_servo, T_sigma);
+		if (T_target == T_target_min){ T_sigma = T_sigma_min; }
+		if (T_target == T_target_max){ T_sigma = T_sigma_max; }
+		if (T_target == T_target_16){ T_sigma = T_sigma_16;	}
+		if (T_target == T_target_17){ T_sigma = T_sigma_17;	}
+		if (T_target == T_target_18){ T_sigma = T_sigma_18;	}
+		if (T_target == T_target_19){ T_sigma = T_sigma_19;	}
+		if (T_target == T_target_20){ T_sigma = T_sigma_20;	}
+		if (T_target == T_target_21){ T_sigma = T_sigma_21;	}
+		if (T_target == T_target_22){ T_sigma = T_sigma_22;	}
+		if (T_target == T_target_23){ T_sigma = T_sigma_23;	}
+		if (T_target == T_target_24){ T_sigma = T_sigma_24;	}
+		if (T_target == T_target_25){ T_sigma = T_sigma_25;	}
+		if (T_target == T_target_26){ T_sigma = T_sigma_26;	}
+		if (T_target == T_target_27){ T_sigma = T_sigma_27;	}
+		if (T_target == T_target_28){ T_sigma = T_sigma_28;	}
+		if (T_target == T_target_29){ T_sigma = T_sigma_29;	}
+		if (T_target == T_target_30){ T_sigma = T_sigma_30;	}
 	}
 }
 
@@ -751,7 +647,7 @@ void Speed_measument() {
 			C_d_time_long_speed = C_d_time_long_acc - C_speed_time_meas + C_time_speed_meas;
 			C_V_current_long = speed_count * C_translate_speed / C_d_time_long_speed;
 			C_V_current = C_V_current_long;
-			C_dV = C_V_current - C_V_target; //отклонение по скорости
+			C_dV = C_V_current - C_V_target; // speed deviation
 			if (C_V_current >= C_V_target)
 			{
 				C_dV_dir = true;
@@ -760,7 +656,7 @@ void Speed_measument() {
 			{
 				C_dV_dir = false;
 			}
-			//расчет ускорений
+			// calculation of accelerations
 			C_dX_acc = (C_V_current - C_V_prev);
 			if (C_dX_acc >= 0)
 			{
@@ -774,9 +670,8 @@ void Speed_measument() {
 			C_acc = C_acc_long;
 
 			C_d_time_long_acc_prev = C_d_time_long_acc;
-			//C_dX_acc = (C_V_current - C_V_prev);
 			C_V_prev = C_V_current;
-			C_V_current /= 10; //скорость делим на 10 чтоб спокойнее было
+			C_V_current /= 10;
 			C_speed_meas = false;
 			Draw();
 		}
@@ -797,24 +692,11 @@ void cruise_control() {
 				{
 					step_regulate = C_acc / C_k1_1;
 					C_rot_direction = false;
-					//!!!!!!!!!!!!!!!!!!!!!
-					lcd.setCursor(0, 1);
-					lcd.print("k1_1");
-					Serial.println("r1 k1_1");
-					Serial.print("regulate= ");
-					Serial.println(step_regulate);
-
 				}
 				else
 				{
 					step_regulate = C_acc / C_k1_2;
 					C_rot_direction = true;
-					//!!!!!!!!!!!!!!!!!!!!!
-					lcd.setCursor(0, 1);
-					lcd.print("k1_2");
-					Serial.println("r2 k1_2");
-					Serial.print("regulate= ");
-					Serial.println(step_regulate);
 				}
 			}
 			else
@@ -823,23 +705,11 @@ void cruise_control() {
 				{
 					step_regulate = C_acc / C_k1_1;
 					C_rot_direction = false;
-					//!!!!!!!!!!!!!!!!!!!!!
-					lcd.setCursor(0, 1);
-					lcd.print("k1_1");
-					Serial.print("r3 k1_1");
-					Serial.print("regulate= ");
-					Serial.println(step_regulate);
 				}
 				else
 				{
 					step_regulate = C_acc / C_k1_2;
 					C_rot_direction = true;
-					//!!!!!!!!!!!!!!!!!!!!!
-					lcd.setCursor(0, 1);
-					lcd.print("k1_2");
-					Serial.print("r4 k1_2");
-					Serial.print("regulate= ");
-					Serial.println(step_regulate);
 				}
 			}
 		}
@@ -851,23 +721,11 @@ void cruise_control() {
 				{
 					step_regulate = C_dV / C_k2_1;
 					C_rot_direction = false;
-					//!!!!!!!!!!!!!!!!!!!!!
-					lcd.setCursor(0, 1);
-					lcd.print("k2_1");
-					Serial.print("r5 k2_1");
-					Serial.print("regulate= ");
-					Serial.println(step_regulate);
 				}
 				else
 				{
 					step_regulate = C_dV / C_k2_2;
 					C_rot_direction = true;
-					//!!!!!!!!!!!!!!!!!!!!!
-					lcd.setCursor(0, 1);
-					lcd.print("k2_2");
-					Serial.println("r6 k2_3");
-					Serial.print("regulate= ");
-					Serial.println(step_regulate);
 				}
 			}
 			else
@@ -878,23 +736,11 @@ void cruise_control() {
 					{
 						step_regulate = C_dV / C_k2_3;
 						C_rot_direction = false;
-						//!!!!!!!!!!!!!!!!!!!!!
-						lcd.setCursor(0, 1);
-						lcd.print("k2_3");
-						Serial.print("r7 k2_3");
-						Serial.print("regulate= ");
-						Serial.println(step_regulate);
 					}
 					else
 					{
 						step_regulate = C_dV / C_k2_4;
 						C_rot_direction = true;
-						//!!!!!!!!!!!!!!!!!!!!!
-						lcd.setCursor(0, 1);
-						lcd.print("k2_4");
-						Serial.print("r8 k2_4");
-						Serial.print("regulate= ");
-						Serial.println(step_regulate);
 					}
 				}
 				else if (C_acc > C_acc_max)
@@ -903,23 +749,11 @@ void cruise_control() {
 					{
 						step_regulate = C_dV / C_k2_3;
 						C_rot_direction = true;
-						//!!!!!!!!!!!!!!!!!!!!!
-						lcd.setCursor(0, 1);
-						lcd.print("k2_3");
-						Serial.print("r9 k2_3");
-						Serial.print("regulate= ");
-						Serial.println(step_regulate);
 					}
 					else
 					{
 						step_regulate = C_dV / C_k2_4;
 						C_rot_direction = false;
-						//!!!!!!!!!!!!!!!!!!!!!
-						lcd.setCursor(0, 1);
-						lcd.print("k2_4");
-						Serial.print("r10 k2_4");
-						Serial.print("regulate= ");
-						Serial.println(step_regulate);
 					}
 				}
 			}
@@ -930,23 +764,11 @@ void cruise_control() {
 			{
 				step_regulate = C_dV / C_k3_1;
 				C_rot_direction = false;
-				//!!!!!!!!!!!!!!!!!!!!!
-				lcd.setCursor(0, 1);
-				lcd.print("k3_1");
-				Serial.print("r11 k3_1");
-				Serial.print("regulate= ");
-				Serial.println(step_regulate);
 			}
 			else
 			{
 				step_regulate = C_dV / C_k3_2;
 				C_rot_direction = true;
-				//!!!!!!!!!!!!!!!!!!!!!
-				lcd.setCursor(0, 1);
-				lcd.print("k3_2");
-				Serial.print("r12 k3_2");
-				Serial.print("regulate= ");
-				Serial.println(step_regulate);
 			}
 		}
 		if (step_regulate != 0)
@@ -984,7 +806,7 @@ void drl_control() {
 	}
 	if (drl_state && !drl_first_start)
 	{
-		if (digitalRead(di_lamp))  //уточнить положение
+		if (digitalRead(di_lamp))  //clarify position
 		{
 			if (!drl_lights_on)
 			{
@@ -1004,19 +826,18 @@ void drl_control() {
 }
 
 void setup() {
-	//drl
-	//перевод Timer1 на 60 Гц
-	//TCCR1A = TCCR1A & 0xe0 | 1; //разрядность шины 1 таймера(выводы 9,10)
-	//TCCR1B = TCCR1B & 0xe0 | 0x0d; //задание частоты 1 таймера (выводы 9,10) nano, 11,12 mega
-	//
+	/* drl:
+		translate Timer1 to 60 Hz
+		TCCR1A = TCCR1A & 0xe0 | 1; // bus width of 1 timer (pins 9,10)
+		TCCR1B = TCCR1B & 0xe0 | 0x0d; // setting the frequency of 1 timer (pins 9,10) nano, 11,12 mega	*/
 	TCCR1A = TCCR1A & 0xe0 | 3;
 	TCCR1B = TCCR1B & 0xe0 | 0x0c;
 
 	drl_state = false;
 
 	attachInterrupt(digitalPinToInterrupt(di_lamp), drl, CHANGE);
-	attachInterrupt(digitalPinToInterrupt(di_speed), Speed_interrupt, FALLING); // или FALLING
-	//выводы
+	attachInterrupt(digitalPinToInterrupt(di_speed), Speed_interrupt, FALLING); // or FALLING
+	//outputs
 	pinMode(led_red, OUTPUT);
 	pinMode(led_green, OUTPUT);
 	pinMode(drive_dir, OUTPUT);
@@ -1026,9 +847,7 @@ void setup() {
 	pinMode(drl_lamp, OUTPUT);
 	pinMode(do_servo, OUTPUT);
 
-
-	// задание первоначальнх переменных
-	
+	// setting initial variables
 	current_step = drive_step_start;
 	cruise = false;
 	switch_on_off = false;
@@ -1036,14 +855,15 @@ void setup() {
 	speed_count = 0;
 	C_regulate_timer = 0;
 	C_speed_time_meas = 0;
-	//первоначалная уставка круиза 100 км/ч
+
+	//initial cruise setting 100 km/h
 	C_V_target = 1000;
 	Cruise_first_start = true;
 	C_d_time_long_acc_prev = 0;
 		
-	//устанавливаем минимальну температуру
+	//set the minimum temperature
 	T_target = T_target_min;
-	//загоняем серво в минимальну температуру
+	//drive the servo to the minimum temperature
 	T_sigma = T_sigma_max;
 	analogWrite(do_servo, T_sigma);
 	T_time_regulate = 0;
@@ -1052,20 +872,13 @@ void setup() {
 	drl_state = false;
 	drl_lights_on = false;
 	digitalWrite(drl_lamp, LOW);
-
-	//наладка
-	Serial.begin(9600);
-	lcd.begin();
-	lcd.setCursor(0, 0);
-	lcd.print("hello");
 }
 
 void loop() {
-	
 	switch (getPressedButton())
 	{
 	case (button_off):
-		//проверка отклченного положения шд
+		//checking the off position of the stepmotor
 		if (!digitalRead(drive_enable))
 		{
 			digitalWrite(drive_enable, HIGH);
@@ -1074,7 +887,6 @@ void loop() {
 		{
 			digitalWrite(drive_sleep, LOW);
 		}
-		//обнуляем переменну на всякий случай
 		if (cruise)
 		{
 			cruise = false;
@@ -1095,7 +907,6 @@ void loop() {
 		C_regulate_timer = millis();
 		break;
 	case (button_resume):
-		//мне кажется можно и остаить
 		if (!cruise)
 		{
 			cruise = true;
@@ -1133,12 +944,7 @@ void loop() {
 		Cruise_first_start = false;
 		break;
 	}
-	
-	//измеряем скорость  "фоне"
 	Speed_measument();
-	//drl
 	drl_control();
-	
 	delay(10);
-	
 }
